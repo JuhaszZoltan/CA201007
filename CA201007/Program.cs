@@ -10,15 +10,20 @@ namespace CA201007
     {
         static Random rnd = new Random();
         static int[] tomb = new int[100];
+        static char[] inf = "INFORMATIKA".ToCharArray();
+
         static void Main()
         {
-            Feltolt();
-            Kiir();
-            for (int i = 0; i < 1000; i++)
-            {
-                RandomSzin();
-                RandomHelyreIr();
-            }
+            //Feltolt();
+            //Kiir();
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    RandomSzin();
+            //    RandomHelyreIr();
+            //}
+            Console.WriteLine(RandomJelszo());
+            Kever();
+            Console.WriteLine(new String(inf));
             Console.ReadKey();
         }
         static void Feltolt()
@@ -45,16 +50,28 @@ namespace CA201007
         }
         static void RandomSzin()
         {
-            ConsoleColor[] szinek =
-            {
-                ConsoleColor.Green,
-                ConsoleColor.Blue,
-                ConsoleColor.Yellow,
-                ConsoleColor.Red,
-                ConsoleColor.Magenta,
-            };
-            Console.ForegroundColor = szinek[rnd.Next(szinek.Length)];
+            Console.ForegroundColor = (ConsoleColor)rnd.Next(1, 16);
         }
-            
+        static char RandomChar() => (char)rnd.Next(65, 91);
+        static string RandomJelszo()
+        {
+            string pw = "";
+            for (int i = 0; i < 6; i++)
+            {
+                pw += RandomChar();
+            }
+            return pw;
+        }
+        static void Kever()
+        {
+            for (int i = 0; i < inf.Length / 2; i++)
+            {
+                int x = rnd.Next(inf.Length);
+                int y = rnd.Next(inf.Length);
+                char s = inf[x];
+                inf[x] = inf[y];
+                inf[y] = s;
+            }
+        }
     }
 }
